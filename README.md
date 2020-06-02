@@ -2,6 +2,11 @@
 
 This is an example written for Docker Compose to setup The Container Scanner Clair as a local setup with it's own private local registry.
 
+This is probably the base case scenario for implementing Clair and most straight forward as it deal on both cases with:
+ * a local private registry
+ * a remote registry
+
+
 To run it simply do:
 ```
 docker-compose -f clair-scanner.yaml  up -d

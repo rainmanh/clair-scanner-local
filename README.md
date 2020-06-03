@@ -12,7 +12,12 @@ To run it simply do:
 docker-compose -f clair-scanner.yaml  up -d
 ```
 
-You also need: clair-scanner. 
+Now, you can do the scanning process with either:
+* clair-scanner
+* klar
+
+## clair-scanner
+
 Download the binary for your system architectre from: https://github.com/arminc/clair-scanner
 
 To scan ensure you got the docker containers running and listening, then just simply do (example below running against my local private registry):
@@ -21,7 +26,17 @@ To scan ensure you got the docker containers running and listening, then just si
  /usr/local/bin/clair-scanner --clair="http://127.0.0.1:6060" --ip="<your_box_ip>" localhost:5000/clair
 ```
 
-output example:
+## klar
+
+You have to download klar: https://github.com/optiopay/klar 
+
+Then you can proceed as the example below for a Private Registry. If you are using as a Private Registry the localhost, that will not resolve within the container, instead your have you use your hosts (laptop/instance...etc.) Ip instead..
+
+```
+CLAIR_ADDR=http://localhost:6060 CLAIR_OUTPUT=Low CLAIR_THRESHOLD=10 REGISTRY_INSECURE=TRUE klar 192.168.1.11:5000/postgres:9.6
+```
+
+### output example:
 
 ```
 2020/06/02 12:51:33 [INFO] ▶ Start clair-scanner
